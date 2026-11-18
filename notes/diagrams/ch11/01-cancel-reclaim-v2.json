@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "取消请求怎样传播到引擎并完成资源回收",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "viewBox": [
+      1100,
+      560
+    ]
+  },
+  "participants": [
+    {
+      "id": "caller",
+      "type": "external",
+      "label": "客户端",
+      "sublabel": "保留取消控制通道"
+    },
+    {
+      "id": "service",
+      "type": "backend",
+      "label": "网关与请求服务",
+      "sublabel": "维护截止时间和请求状态"
+    },
+    {
+      "id": "engine",
+      "type": "backend",
+      "label": "推理引擎",
+      "sublabel": "调度、执行与 KV 管理"
+    }
+  ],
+  "messages": [
+    {
+      "id": "submit",
+      "from": "caller",
+      "to": "service",
+      "y": 170,
+      "label": "提交请求及总截止时间"
+    },
+    {
+      "id": "dispatch",
+      "from": "service",
+      "to": "engine",
+      "y": 215,
+      "label": "准入通过，传播剩余预算",
+      "variant": "emphasis"
+    },
+    {
+      "id": "output",
+      "from": "engine",
+      "to": "service",
+      "y": 260,
+      "label": "持续返回输出片段",
+      "variant": "return"
+    },
+    {
+      "id": "forward",
+      "from": "service",
+      "to": "caller",
+      "y": 305,
+      "label": "持续转发流式结果",
+      "variant": "return"
+    },
+    {
+      "id": "cancel",
+      "from": "caller",
+      "to": "service",
+      "y": 350,
+      "label": "主动取消，停止等待"
+    },
+    {
+      "id": "propagate",
+      "from": "service",
+      "to": "engine",
+      "y": 395,
+      "label": "传播取消，停止后续调度",
+      "variant": "emphasis"
+    },
+    {
+      "id": "reclaimed",
+      "from": "engine",
+      "to": "service",
+      "y": 465,
+      "label": "安全停止后确认请求状态已回收",
+      "variant": "return"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "停止与回收",
+      "items": [
+        "已提交的设备工作可能仍需到安全点；确认回收后再结清占用额度。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "控制路径",
+      "items": [
+        "图示主动取消；断连或截止时间到达也需触发同一清理路径。"
+      ]
+    }
+  ]
+}

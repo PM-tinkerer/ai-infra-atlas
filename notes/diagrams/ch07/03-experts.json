@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "专家并行：按词元选择专家，再回收加权结果",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    },
+    "viewBox": [
+      1340,
+      620
+    ]
+  },
+  "components": [
+    {
+      "id": "token",
+      "type": "backend",
+      "label": "词元隐藏表示",
+      "sublabel": "一批词元进入混合专家层",
+      "pos": [
+        30,
+        265
+      ],
+      "size": [
+        180,
+        76
+      ]
+    },
+    {
+      "id": "gate",
+      "type": "backend",
+      "label": "门控路由器",
+      "sublabel": "为每个词元选择专家与权重",
+      "pos": [
+        320,
+        265
+      ],
+      "size": [
+        220,
+        76
+      ]
+    },
+    {
+      "id": "expert-a",
+      "type": "backend",
+      "label": "GPU A · 专家组",
+      "sublabel": "只计算发给本组的词元",
+      "pos": [
+        680,
+        90
+      ],
+      "size": [
+        260,
+        76
+      ]
+    },
+    {
+      "id": "expert-b",
+      "type": "backend",
+      "label": "GPU B · 专家组",
+      "sublabel": "只计算发给本组的词元",
+      "pos": [
+        680,
+        440
+      ],
+      "size": [
+        260,
+        76
+      ]
+    },
+    {
+      "id": "combine",
+      "type": "backend",
+      "label": "按词元回收并加权",
+      "sublabel": "还原词元顺序，送往下一层",
+      "pos": [
+        1060,
+        265
+      ],
+      "size": [
+        240,
+        76
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "token-gate",
+      "from": "token",
+      "to": "gate",
+      "variant": "emphasis"
+    },
+    {
+      "id": "gate-expert-a",
+      "from": "gate",
+      "to": "expert-a",
+      "variant": "emphasis",
+      "label": "分发"
+    },
+    {
+      "id": "gate-expert-b",
+      "from": "gate",
+      "to": "expert-b",
+      "variant": "emphasis",
+      "label": "分发"
+    },
+    {
+      "id": "expert-a-combine",
+      "from": "expert-a",
+      "to": "combine",
+      "variant": "emphasis",
+      "label": "返回结果"
+    },
+    {
+      "id": "expert-b-combine",
+      "from": "expert-b",
+      "to": "combine",
+      "variant": "emphasis",
+      "label": "返回结果"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "选择与归属",
+      "items": [
+        "专家权重保存在各自 GPU；图中的门控与回收是逻辑操作，可在多卡分布执行。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "慢的一侧决定等待",
+      "items": [
+        "每张卡收到的词元量会随内容变化，热点专家增加这一轮的等待。"
+      ]
+    }
+  ]
+}

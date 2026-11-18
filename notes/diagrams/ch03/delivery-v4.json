@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "workflow",
+  "input": "notes/diagrams/ch03/01-evidence-v4.json",
+  "output": "notes/diagrams/ch03/01-evidence-v4.html",
+  "specification": {
+    "sha256": "83f90acf168737798ef5538febaef0a014356e6c581fbc304b7d6a764d2a10ec",
+    "bytes": 2290
+  },
+  "artifact": {
+    "sha256": "5b9c0ce0d0e79eef62e0ebc08f3d770f1e1bda7d72e5fcedf88bc496fdfe7053",
+    "bytes": 627907
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

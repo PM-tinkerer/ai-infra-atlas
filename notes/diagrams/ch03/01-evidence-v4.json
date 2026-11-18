@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "瓶颈假设如何转为验证证据",
+    "quality_profile": "showcase",
+    "viewBox": [
+      840,
+      466
+    ],
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "lanes": [
+    {
+      "id": "measure",
+      "label": "固定与测量"
+    },
+    {
+      "id": "hypothesis_lane",
+      "label": "假设与改动"
+    },
+    {
+      "id": "verify",
+      "label": "重放与决策"
+    }
+  ],
+  "mainPath": [
+    "baseline",
+    "trace",
+    "hypothesis",
+    "experiment",
+    "compare",
+    "decision"
+  ],
+  "nodes": [
+    {
+      "id": "baseline",
+      "lane": "measure",
+      "col": 0,
+      "type": "database",
+      "label": "固定基线",
+      "sublabel": "模型、负载、环境",
+      "width": 96,
+      "height": 60
+    },
+    {
+      "id": "trace",
+      "lane": "measure",
+      "col": 2,
+      "type": "backend",
+      "label": "分阶段测量",
+      "sublabel": "排队、计算、搬运",
+      "width": 96,
+      "height": 60
+    },
+    {
+      "id": "hypothesis",
+      "lane": "hypothesis_lane",
+      "col": 2,
+      "type": "backend",
+      "label": "形成瓶颈假设",
+      "sublabel": "估算与时间线对照",
+      "width": 96,
+      "height": 60
+    },
+    {
+      "id": "experiment",
+      "lane": "hypothesis_lane",
+      "col": 4,
+      "type": "backend",
+      "label": "单变量改动",
+      "sublabel": "只改待验证因素",
+      "width": 96,
+      "height": 60
+    },
+    {
+      "id": "compare",
+      "lane": "verify",
+      "col": 4,
+      "type": "backend",
+      "label": "重放相同负载",
+      "sublabel": "质量、延迟、吞吐",
+      "width": 96,
+      "height": 60
+    },
+    {
+      "id": "decision",
+      "lane": "verify",
+      "col": 5,
+      "type": "security",
+      "label": "判断收益边界",
+      "sublabel": "达标产出与资源成本",
+      "width": 96,
+      "height": 60
+    }
+  ],
+  "edges": [
+    {
+      "from": "baseline",
+      "to": "trace"
+    },
+    {
+      "from": "trace",
+      "to": "hypothesis"
+    },
+    {
+      "from": "hypothesis",
+      "to": "experiment"
+    },
+    {
+      "from": "experiment",
+      "to": "compare"
+    },
+    {
+      "from": "compare",
+      "to": "decision"
+    }
+  ]
+}

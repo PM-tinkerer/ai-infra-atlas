@@ -1,0 +1,26 @@
+# Local system files
+.DS_Store
+._*
+Thumbs.db
+
+# Temporary previews and historical exports
+/tmp/
+/notes/previews/
+/output/pdf/
+*.bak
+*.orig
+*~
+
+# Python / JavaScript local dependencies
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/

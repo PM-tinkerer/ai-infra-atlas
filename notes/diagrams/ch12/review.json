@@ -1,0 +1,16 @@
+{
+  "diagram_type": "architecture",
+  "output": "notes/diagrams/ch12/02-decision-evidence.html",
+  "specification_sha256": "95a4277be667bee98831d5b2386d4865ecbc829ca6f97f5c73d3812607d97e6e",
+  "artifact_sha256": "c35bf4d51e1aaec87a607e2d62b4f8352a2eff01e10f381b064df9cdbfe7913f",
+  "validation": "9/9 showcase, 0 errors, 0 warnings",
+  "visual_review": "passed",
+  "reviewed": [
+    "1440x900 light/dark and 2048x1320 light/dark screenshots",
+    "Four desktop viewports without overflow",
+    "Quality and service acceptance precede cost comparison",
+    "Conditions for stopping and subsequent reevaluation are stated in adjacent cards",
+    "Offline styled SVG and modal viewer"
+  ],
+  "containment_receipt": "02-decision-evidence.visual-check.json"
+}

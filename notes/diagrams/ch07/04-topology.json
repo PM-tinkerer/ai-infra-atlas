@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "两节点协作：层内通信留在机内，阶段激活跨节点",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    },
+    "viewBox": [
+      1410,
+      640
+    ]
+  },
+  "components": [
+    {
+      "id": "a-gpu0",
+      "type": "backend",
+      "label": "GPU A0",
+      "sublabel": "前段层的张量分片 0",
+      "pos": [
+        90,
+        120
+      ],
+      "size": [
+        210,
+        76
+      ]
+    },
+    {
+      "id": "a-gpu1",
+      "type": "backend",
+      "label": "GPU A1",
+      "sublabel": "前段层的张量分片 1",
+      "pos": [
+        90,
+        420
+      ],
+      "size": [
+        210,
+        76
+      ]
+    },
+    {
+      "id": "a-net",
+      "type": "backend",
+      "label": "节点 A 网卡",
+      "sublabel": "承载阶段激活传输",
+      "pos": [
+        390,
+        270
+      ],
+      "size": [
+        210,
+        76
+      ]
+    },
+    {
+      "id": "b-net",
+      "type": "backend",
+      "label": "节点 B 网卡",
+      "sublabel": "接收远端阶段激活",
+      "pos": [
+        800,
+        270
+      ],
+      "size": [
+        210,
+        76
+      ]
+    },
+    {
+      "id": "b-gpu0",
+      "type": "backend",
+      "label": "GPU B0",
+      "sublabel": "后段层的张量分片 0",
+      "pos": [
+        1100,
+        120
+      ],
+      "size": [
+        210,
+        76
+      ]
+    },
+    {
+      "id": "b-gpu1",
+      "type": "backend",
+      "label": "GPU B1",
+      "sublabel": "后段层的张量分片 1",
+      "pos": [
+        1100,
+        420
+      ],
+      "size": [
+        210,
+        76
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "a-gpu0-a-gpu1",
+      "from": "a-gpu0",
+      "to": "a-gpu1",
+      "variant": "emphasis",
+      "label": "层内通信",
+      "labelDy": 90
+    },
+    {
+      "id": "a-gpu0-a-net",
+      "from": "a-gpu0",
+      "to": "a-net",
+      "variant": "emphasis",
+      "label": "激活"
+    },
+    {
+      "id": "a-gpu1-a-net",
+      "from": "a-gpu1",
+      "to": "a-net",
+      "variant": "emphasis",
+      "label": "激活"
+    },
+    {
+      "id": "a-net-b-net",
+      "from": "a-net",
+      "to": "b-net",
+      "variant": "emphasis",
+      "label": "跨节点网络"
+    },
+    {
+      "id": "b-net-b-gpu0",
+      "from": "b-net",
+      "to": "b-gpu0",
+      "variant": "emphasis",
+      "label": "激活"
+    },
+    {
+      "id": "b-net-b-gpu1",
+      "from": "b-net",
+      "to": "b-gpu1",
+      "variant": "emphasis",
+      "label": "激活"
+    },
+    {
+      "id": "b-gpu0-b-gpu1",
+      "from": "b-gpu0",
+      "to": "b-gpu1",
+      "variant": "emphasis",
+      "label": "层内通信",
+      "labelDy": 90
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "图中方向",
+      "items": [
+        "箭头示意部分通信方向；层内集体通信及物理链路均支持双向收发。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "一种候选布局",
+      "items": [
+        "层内高频通信与阶段间激活传输分层映射；实际要验证卡间、网卡和交换网络路径。"
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "节点 A · PP 阶段 1",
+      "wraps": [
+        "a-gpu0",
+        "a-gpu1",
+        "a-net"
+      ],
+      "pad": 30
+    },
+    {
+      "kind": "region",
+      "label": "节点 B · PP 阶段 2",
+      "wraps": [
+        "b-net",
+        "b-gpu0",
+        "b-gpu1"
+      ],
+      "pad": 30
+    }
+  ]
+}

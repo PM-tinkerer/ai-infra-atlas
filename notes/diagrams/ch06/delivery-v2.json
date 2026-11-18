@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "notes/diagrams/ch06/01-engine-round-v2.json",
+  "output": "notes/diagrams/ch06/01-engine-round-v2.html",
+  "specification": {
+    "sha256": "4a39bec23219414dfff4e828a9c7c503699777205f9ed7c3587d24b8d353917b",
+    "bytes": 1953
+  },
+  "artifact": {
+    "sha256": "1fc3c31e93e8fe30d33e7e5a480da6626661bb705678ae571c19ed6cc4d92f04",
+    "bytes": 627055
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

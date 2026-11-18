@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Transformer：两次残差连接",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    },
+    "viewBox": [
+      740,
+      348
+    ]
+  },
+  "components": [
+    {
+      "id": "state",
+      "type": "backend",
+      "label": "输入 x",
+      "sublabel": "本层输入表示",
+      "pos": [
+        40,
+        70
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "attn",
+      "type": "backend",
+      "label": "Attention 子层",
+      "sublabel": "Norm → Attention",
+      "pos": [
+        260,
+        70
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "sum-attn",
+      "type": "backend",
+      "label": "第一次相加",
+      "sublabel": "输入 + 注意力结果",
+      "pos": [
+        480,
+        70
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "ffn",
+      "type": "backend",
+      "label": "FFN 子层",
+      "sublabel": "Norm → FFN",
+      "pos": [
+        480,
+        210
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "sum-ffn",
+      "type": "backend",
+      "label": "第二次相加",
+      "sublabel": "中间状态 + FFN 结果",
+      "pos": [
+        260,
+        210
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "out",
+      "type": "backend",
+      "label": "输出 z",
+      "sublabel": "交给下一层",
+      "pos": [
+        40,
+        210
+      ],
+      "size": [
+        140,
+        70
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "layer-0",
+      "from": "state",
+      "to": "attn",
+      "variant": "emphasis"
+    },
+    {
+      "id": "layer-1",
+      "from": "attn",
+      "to": "sum-attn",
+      "variant": "emphasis"
+    },
+    {
+      "id": "layer-2",
+      "from": "sum-attn",
+      "to": "ffn",
+      "variant": "emphasis"
+    },
+    {
+      "id": "layer-3",
+      "from": "ffn",
+      "to": "sum-ffn",
+      "variant": "emphasis"
+    },
+    {
+      "id": "layer-4",
+      "from": "sum-ffn",
+      "to": "out",
+      "variant": "emphasis"
+    },
+    {
+      "id": "skip-attn",
+      "from": "state",
+      "to": "sum-attn",
+      "label": "残差 x",
+      "variant": "default",
+      "fromSide": "top",
+      "toSide": "top",
+      "via": [
+        [
+          110,
+          20
+        ],
+        [
+          550,
+          20
+        ]
+      ]
+    },
+    {
+      "id": "skip-ffn",
+      "from": "sum-attn",
+      "to": "sum-ffn",
+      "label": "残差 h",
+      "variant": "default",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "via": [
+        [
+          550,
+          175
+        ],
+        [
+          330,
+          175
+        ]
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "注意力子层",
+      "items": [
+        "跨位置聚合上下文信息。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "前馈子层",
+      "items": [
+        "在各位置分别变换特征，接收已包含上下文的表示。"
+      ]
+    }
+  ]
+}

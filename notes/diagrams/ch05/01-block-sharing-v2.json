@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "块表映射与前缀共享",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1000,
+      620
+    ],
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "requestA",
+      "type": "frontend",
+      "label": "请求 A",
+      "sublabel": "共同前缀＋后缀 A",
+      "pos": [
+        40,
+        80
+      ],
+      "size": [
+        180,
+        76
+      ]
+    },
+    {
+      "id": "tableA",
+      "type": "backend",
+      "label": "A 的逻辑块表",
+      "sublabel": "记录物理块编号",
+      "pos": [
+        350,
+        80
+      ],
+      "size": [
+        190,
+        76
+      ]
+    },
+    {
+      "id": "requestB",
+      "type": "frontend",
+      "label": "请求 B",
+      "sublabel": "共同前缀＋后缀 B",
+      "pos": [
+        40,
+        440
+      ],
+      "size": [
+        180,
+        76
+      ]
+    },
+    {
+      "id": "tableB",
+      "type": "backend",
+      "label": "B 的逻辑块表",
+      "sublabel": "记录物理块编号",
+      "pos": [
+        350,
+        440
+      ],
+      "size": [
+        190,
+        76
+      ]
+    },
+    {
+      "id": "privateA",
+      "type": "database",
+      "label": "A 私有后缀块",
+      "sublabel": "只由 A 追加",
+      "pos": [
+        750,
+        80
+      ],
+      "size": [
+        190,
+        76
+      ]
+    },
+    {
+      "id": "prefix",
+      "type": "database",
+      "label": "共享前缀块",
+      "sublabel": "已计算、只读共享",
+      "pos": [
+        750,
+        260
+      ],
+      "size": [
+        190,
+        76
+      ]
+    },
+    {
+      "id": "privateB",
+      "type": "database",
+      "label": "B 私有后缀块",
+      "sublabel": "只由 B 追加",
+      "pos": [
+        750,
+        440
+      ],
+      "size": [
+        190,
+        76
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "设备物理块池",
+      "wraps": [
+        "privateA",
+        "prefix",
+        "privateB"
+      ],
+      "pad": 30
+    }
+  ],
+  "connections": [
+    {
+      "from": "requestA",
+      "to": "tableA"
+    },
+    {
+      "from": "requestB",
+      "to": "tableB"
+    },
+    {
+      "from": "tableA",
+      "to": "privateA",
+      "label": "后缀映射"
+    },
+    {
+      "from": "tableA",
+      "to": "prefix",
+      "label": "前缀映射"
+    },
+    {
+      "from": "tableB",
+      "to": "prefix",
+      "label": "前缀映射"
+    },
+    {
+      "from": "tableB",
+      "to": "privateB",
+      "label": "后缀映射",
+      "labelDy": 40
+    }
+  ]
+}

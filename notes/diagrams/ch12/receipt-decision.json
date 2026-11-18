@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "notes/diagrams/ch12/02-decision-evidence.json",
+  "output": "notes/diagrams/ch12/02-decision-evidence.html",
+  "specification": {
+    "sha256": "95a4277be667bee98831d5b2386d4865ecbc829ca6f97f5c73d3812607d97e6e",
+    "bytes": 2555
+  },
+  "artifact": {
+    "sha256": "c35bf4d51e1aaec87a607e2d62b4f8352a2eff01e10f381b064df9cdbfe7913f",
+    "bytes": 630811
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

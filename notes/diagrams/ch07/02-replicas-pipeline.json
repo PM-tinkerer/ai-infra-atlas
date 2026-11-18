@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "副本之间分请求，流水线阶段之间传激活",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    },
+    "viewBox": [
+      1040,
+      600
+    ]
+  },
+  "components": [
+    {
+      "id": "requests",
+      "type": "backend",
+      "label": "请求路由",
+      "sublabel": "每个请求选择一个副本",
+      "pos": [
+        30,
+        270
+      ],
+      "size": [
+        190,
+        76
+      ]
+    },
+    {
+      "id": "a-front",
+      "type": "backend",
+      "label": "副本 A · 阶段 1",
+      "sublabel": "前半模型层；本地层 KV",
+      "pos": [
+        365,
+        130
+      ],
+      "size": [
+        210,
+        76
+      ]
+    },
+    {
+      "id": "a-back",
+      "type": "backend",
+      "label": "副本 A · 阶段 2",
+      "sublabel": "后半模型层；本地层 KV",
+      "pos": [
+        765,
+        130
+      ],
+      "size": [
+        210,
+        76
+      ]
+    },
+    {
+      "id": "b-front",
+      "type": "backend",
+      "label": "副本 B · 阶段 1",
+      "sublabel": "前半模型层；本地层 KV",
+      "pos": [
+        365,
+        430
+      ],
+      "size": [
+        210,
+        76
+      ]
+    },
+    {
+      "id": "b-back",
+      "type": "backend",
+      "label": "副本 B · 阶段 2",
+      "sublabel": "后半模型层；本地层 KV",
+      "pos": [
+        765,
+        430
+      ],
+      "size": [
+        210,
+        76
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "requests-a-front",
+      "from": "requests",
+      "to": "a-front",
+      "variant": "emphasis",
+      "label": "请求甲"
+    },
+    {
+      "id": "requests-b-front",
+      "from": "requests",
+      "to": "b-front",
+      "variant": "emphasis",
+      "label": "请求乙"
+    },
+    {
+      "id": "a-front-a-back",
+      "from": "a-front",
+      "to": "a-back",
+      "variant": "emphasis",
+      "label": "中间激活"
+    },
+    {
+      "id": "b-front-b-back",
+      "from": "b-front",
+      "to": "b-back",
+      "variant": "emphasis",
+      "label": "中间激活"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "数据并行 DP",
+      "items": [
+        "A、B 各自拥有一份完整模型；两个请求可独立执行。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "流水线并行 PP",
+      "items": [
+        "每个副本内部按层切分；同一请求依次经过阶段 1、阶段 2。"
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "副本 A：完整模型",
+      "wraps": [
+        "a-front",
+        "a-back"
+      ],
+      "pad": 28
+    },
+    {
+      "kind": "region",
+      "label": "副本 B：完整模型",
+      "wraps": [
+        "b-front",
+        "b-back"
+      ],
+      "pad": 28
+    }
+  ]
+}

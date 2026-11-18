@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "sequence",
+  "input": "notes/diagrams/ch09/02-pd-handoff.json",
+  "output": "notes/diagrams/ch09/02-pd-handoff.html",
+  "specification": {
+    "sha256": "b3132500168c824fc3341eb94d8660e5c57f644bd1fe7f2d9f2253b9eba4de2e",
+    "bytes": 1796
+  },
+  "artifact": {
+    "sha256": "6a90300f0029e5bc1ff8f25e71549a44ed27cd95e935a70c0e714e4432959485",
+    "bytes": 630562
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

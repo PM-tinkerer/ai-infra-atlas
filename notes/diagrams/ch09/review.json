@@ -1,0 +1,30 @@
+[
+  {
+    "diagram_type": "sequence",
+    "output": "notes/diagrams/ch09/01-request-serving.html",
+    "specification_sha256": "74f92edcf4de16a40ff90e04f54bd83c9fb3e3f4f249f042c08bc145bb81a01e",
+    "artifact_sha256": "c2889b662cbba43972294caf3dba8d9a6ab27951c47bd355a1d48bc6f6dd9cf8",
+    "validation": "9/9 showcase, 0 errors, 0 warnings",
+    "visual_review": "passed",
+    "correction_rounds": 0,
+    "reviewed": [
+      "1440x900 light/dark, 2048x1320 light/dark evidence",
+      "Labels, logical ordering, stream-return meaning, KV handoff conditions"
+    ],
+    "containment_receipt": "01-request-serving.visual-check.json"
+  },
+  {
+    "diagram_type": "sequence",
+    "output": "notes/diagrams/ch09/02-pd-handoff.html",
+    "specification_sha256": "b3132500168c824fc3341eb94d8660e5c57f644bd1fe7f2d9f2253b9eba4de2e",
+    "artifact_sha256": "6a90300f0029e5bc1ff8f25e71549a44ed27cd95e935a70c0e714e4432959485",
+    "validation": "9/9 showcase, 0 errors, 0 warnings",
+    "visual_review": "passed",
+    "correction_rounds": 1,
+    "reviewed": [
+      "1440x900 light/dark, 2048x1320 light/dark evidence",
+      "Labels, logical ordering, stream-return meaning, KV handoff conditions"
+    ],
+    "containment_receipt": "02-pd-handoff.visual-check.json"
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "notes/diagrams/ch05/01-block-sharing-v2.json",
+  "output": "notes/diagrams/ch05/01-block-sharing-v2.html",
+  "specification": {
+    "sha256": "85db59091ece8fedd79119d6e991abc2de7460f80b3e42d7fb8a604f7d384fde",
+    "bytes": 2623
+  },
+  "artifact": {
+    "sha256": "cd7a22bd414ead2e6a7e8244148e548cbfab7acd88c5a3e0c171262421263d10",
+    "bytes": 630495
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "FlashAttention：分块计算与在线统计",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1000,
+      600
+    ],
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "qkv",
+      "type": "database",
+      "label": "HBM：Q、K、V",
+      "sublabel": "输入与历史状态",
+      "pos": [
+        50,
+        100
+      ],
+      "size": [
+        190,
+        78
+      ]
+    },
+    {
+      "id": "load",
+      "type": "backend",
+      "label": "载入数据分块",
+      "sublabel": "按片上容量组织",
+      "pos": [
+        370,
+        100
+      ],
+      "size": [
+        190,
+        78
+      ]
+    },
+    {
+      "id": "score",
+      "type": "backend",
+      "label": "计算匹配分数",
+      "sublabel": "更新最大值、指数和",
+      "pos": [
+        690,
+        100
+      ],
+      "size": [
+        190,
+        78
+      ]
+    },
+    {
+      "id": "accumulate",
+      "type": "backend",
+      "label": "累积加权输出",
+      "sublabel": "统一归一化口径",
+      "pos": [
+        690,
+        370
+      ],
+      "size": [
+        190,
+        78
+      ]
+    },
+    {
+      "id": "output",
+      "type": "database",
+      "label": "HBM：输出 O",
+      "sublabel": "遍历所需分块后写回",
+      "pos": [
+        50,
+        370
+      ],
+      "size": [
+        190,
+        78
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "片上工作区：逐块处理，保留运行统计",
+      "wraps": [
+        "load",
+        "score",
+        "accumulate"
+      ],
+      "pad": 38
+    }
+  ],
+  "connections": [
+    {
+      "from": "qkv",
+      "to": "load",
+      "label": "读取分块"
+    },
+    {
+      "from": "load",
+      "to": "score"
+    },
+    {
+      "from": "score",
+      "to": "accumulate",
+      "label": "局部贡献",
+      "labelAt": [
+        785,
+        270
+      ]
+    },
+    {
+      "from": "accumulate",
+      "to": "output",
+      "label": "最终结果"
+    }
+  ]
+}

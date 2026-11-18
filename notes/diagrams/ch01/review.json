@@ -1,0 +1,11 @@
+{
+  "diagram_type": "architecture",
+  "output": "notes/index.html",
+  "validation": "5 diagrams × 9/9 showcase, 0 errors, 0 warnings",
+  "visual_review": "passed",
+  "correction_rounds": 2,
+  "offline_html_check": "passed",
+  "numbered_toc_and_headings": "passed",
+  "receipts": "delivery-receipts.json",
+  "review_scope": "Inspected final light and dark diagram captures, embedded SVG previews, desktop and mobile notes, and expanded viewer. Native Archify HTML remains unchanged after delivery; static previews are derived from it."
+}

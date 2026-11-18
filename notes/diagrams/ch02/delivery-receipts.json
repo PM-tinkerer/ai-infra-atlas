@@ -1,0 +1,50 @@
+[
+  {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "deliver",
+    "type": "architecture",
+    "input": "notes/diagrams/ch02/03-scheduling.json",
+    "output": "notes/diagrams/ch02/03-scheduling.html",
+    "specification": {
+      "sha256": "79025a9211a565dc0bec52248ca135d4d228cd5ae33ae5757ada261236b4176f",
+      "bytes": 2273
+    },
+    "artifact": {
+      "sha256": "58dae0ccb84b92df8fc496fc22117c729da898686bd2712062ebccfba79faa65",
+      "bytes": 626636
+    },
+    "validation": {
+      "checksPassed": 9,
+      "checkCount": 9,
+      "compositionProfile": "showcase",
+      "compositionStatus": "pass",
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "deliver",
+    "type": "architecture",
+    "input": "notes/diagrams/ch02/04-tiling.json",
+    "output": "notes/diagrams/ch02/04-tiling.html",
+    "specification": {
+      "sha256": "19086bc5ec32fc0355ed7d03d49df85eabf5359213651019da3b01a5e784d6df",
+      "bytes": 2569
+    },
+    "artifact": {
+      "sha256": "c005d76ec0b1d7deedddd04433e774623ebb07ddefc24a9509c734ec00dc5dae",
+      "bytes": 627752
+    },
+    "validation": {
+      "checksPassed": 9,
+      "checkCount": 9,
+      "compositionProfile": "showcase",
+      "compositionStatus": "pass",
+      "errors": 0,
+      "warnings": 0
+    }
+  }
+]

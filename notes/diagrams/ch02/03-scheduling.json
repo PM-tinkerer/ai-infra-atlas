@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "延迟隐藏：选择已就绪的 Warp",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "resident",
+      "type": "backend",
+      "label": "驻留 Warp",
+      "sublabel": "资源已经分配",
+      "pos": [
+        40,
+        70
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "ready",
+      "type": "backend",
+      "label": "就绪 Warp",
+      "sublabel": "操作数与依赖已满足",
+      "pos": [
+        300,
+        70
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "scheduler",
+      "type": "backend",
+      "label": "Warp Scheduler",
+      "sublabel": "选择并发射指令",
+      "pos": [
+        560,
+        70
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "waiting",
+      "type": "backend",
+      "label": "等待中的 Warp",
+      "sublabel": "等待数据或同步",
+      "pos": [
+        300,
+        260
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "unit",
+      "type": "backend",
+      "label": "执行单元",
+      "sublabel": "执行已发射的工作",
+      "pos": [
+        560,
+        260
+      ],
+      "size": [
+        160,
+        64
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "resident-ready",
+      "from": "resident",
+      "to": "ready",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ready-scheduler",
+      "from": "ready",
+      "to": "scheduler",
+      "variant": "emphasis"
+    },
+    {
+      "id": "scheduler-unit",
+      "from": "scheduler",
+      "to": "unit",
+      "variant": "emphasis"
+    },
+    {
+      "id": "resident-waiting",
+      "from": "resident",
+      "to": "waiting",
+      "variant": "emphasis"
+    },
+    {
+      "id": "waiting-ready",
+      "from": "waiting",
+      "to": "ready",
+      "variant": "emphasis",
+      "label": "依赖解除"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "等待与执行可以交错",
+      "items": [
+        "驻留数量只是潜力；能否持续发射，还取决于就绪指令和执行资源。"
+      ]
+    }
+  ]
+}

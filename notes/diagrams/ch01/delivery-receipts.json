@@ -1,0 +1,122 @@
+[
+  {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "deliver",
+    "type": "architecture",
+    "input": "notes/diagrams/ch01/01-request.json",
+    "output": "notes/diagrams/ch01/01-request.html",
+    "specification": {
+      "sha256": "0cf70ddc65b3fe7a111036832ee8672a3fdcdda9e78029ae08c5acee7f6e6073",
+      "bytes": 2769
+    },
+    "artifact": {
+      "sha256": "fe4b689d1c58a6d29094267143e7161f225d2a03cd2e1f125802f74c5293605d",
+      "bytes": 627800
+    },
+    "validation": {
+      "checksPassed": 9,
+      "checkCount": 9,
+      "compositionProfile": "showcase",
+      "compositionStatus": "pass",
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "deliver",
+    "type": "architecture",
+    "input": "notes/diagrams/ch01/02-transformer.json",
+    "output": "notes/diagrams/ch01/02-transformer.html",
+    "specification": {
+      "sha256": "223b7f40eae18e636e31af0eb060aa3a11a5f6f5f6e2e833779c116019e642f0",
+      "bytes": 3151
+    },
+    "artifact": {
+      "sha256": "34614199c7d48407e32eaf7c8c82832073924d30e4c06ab3010a703e1d51fb21",
+      "bytes": 628648
+    },
+    "validation": {
+      "checksPassed": 9,
+      "checkCount": 9,
+      "compositionProfile": "showcase",
+      "compositionStatus": "pass",
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "deliver",
+    "type": "architecture",
+    "input": "notes/diagrams/ch01/03-cache.json",
+    "output": "notes/diagrams/ch01/03-cache.html",
+    "specification": {
+      "sha256": "af1a0c37c43c6ead48510afb09e387651d883eb53fd8cd74ec218038470a0bcd",
+      "bytes": 3286
+    },
+    "artifact": {
+      "sha256": "a8a9de30525328f851579707bf28cae156bce293256f11abaf43ecb24d0f4677",
+      "bytes": 630472
+    },
+    "validation": {
+      "checksPassed": 9,
+      "checkCount": 9,
+      "compositionProfile": "showcase",
+      "compositionStatus": "pass",
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "deliver",
+    "type": "architecture",
+    "input": "notes/diagrams/ch01/04-models.json",
+    "output": "notes/diagrams/ch01/04-models.html",
+    "specification": {
+      "sha256": "d8257721f6d509fd91eff4c78f3a9a34c4ccb703a8e8b8cf4ade8190b916f7b0",
+      "bytes": 3361
+    },
+    "artifact": {
+      "sha256": "8b49b94b07a74e2b2fdb31c215c88aee54e923778055b4b425b03a09a5d0c956",
+      "bytes": 629753
+    },
+    "validation": {
+      "checksPassed": 9,
+      "checkCount": 9,
+      "compositionProfile": "showcase",
+      "compositionStatus": "pass",
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "deliver",
+    "type": "architecture",
+    "input": "notes/diagrams/ch01/05-latency.json",
+    "output": "notes/diagrams/ch01/05-latency.html",
+    "specification": {
+      "sha256": "0b63c6dcbc62373674131c1a0ee1d046f04f9e846730128e7113534f981c72b4",
+      "bytes": 2556
+    },
+    "artifact": {
+      "sha256": "8955a5c0e9ca54e567e690867eae4f0d268648b033b6598100cebd969975360c",
+      "bytes": 627233
+    },
+    "validation": {
+      "checksPassed": 9,
+      "checkCount": 9,
+      "compositionProfile": "showcase",
+      "compositionStatus": "pass",
+      "errors": 0,
+      "warnings": 0
+    }
+  }
+]

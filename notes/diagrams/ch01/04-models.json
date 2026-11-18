@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Dense 与 MoE 的执行方式",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "dense-in",
+      "type": "backend",
+      "label": "Token 表示",
+      "pos": [
+        40,
+        90
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "dense-ffn",
+      "type": "backend",
+      "label": "同一组 FFN",
+      "sublabel": "稠密执行",
+      "pos": [
+        360,
+        90
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "dense-out",
+      "type": "backend",
+      "label": "输出表示",
+      "pos": [
+        740,
+        90
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "moe-in",
+      "type": "backend",
+      "label": "Token 表示",
+      "pos": [
+        40,
+        280
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "router",
+      "type": "backend",
+      "label": "Router",
+      "sublabel": "选择部分专家",
+      "pos": [
+        240,
+        280
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "expert-a",
+      "type": "backend",
+      "label": "专家 1",
+      "sublabel": "被选中的专家",
+      "pos": [
+        500,
+        280
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "expert-b",
+      "type": "backend",
+      "label": "专家 3",
+      "sublabel": "被选中的专家",
+      "pos": [
+        500,
+        450
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "combine",
+      "type": "backend",
+      "label": "加权组合",
+      "sublabel": "得到输出表示",
+      "pos": [
+        740,
+        280
+      ],
+      "size": [
+        140,
+        70
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "dense-a",
+      "from": "dense-in",
+      "to": "dense-ffn",
+      "variant": "emphasis"
+    },
+    {
+      "id": "dense-b",
+      "from": "dense-ffn",
+      "to": "dense-out",
+      "variant": "emphasis"
+    },
+    {
+      "id": "route",
+      "from": "moe-in",
+      "to": "router",
+      "variant": "emphasis"
+    },
+    {
+      "id": "choose-a",
+      "from": "router",
+      "to": "expert-a",
+      "variant": "emphasis"
+    },
+    {
+      "id": "choose-b",
+      "from": "router",
+      "to": "expert-b",
+      "variant": "default"
+    },
+    {
+      "id": "merge-a",
+      "from": "expert-a",
+      "to": "combine",
+      "variant": "emphasis"
+    },
+    {
+      "id": "merge-b",
+      "from": "expert-b",
+      "to": "combine",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "计算与存储分开看",
+      "items": [
+        "少量专家参与计算，不代表全部专家权重无需存储或调入。"
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Dense：稠密前馈层",
+      "wraps": [
+        "dense-in",
+        "dense-ffn",
+        "dense-out"
+      ],
+      "pad": 24
+    },
+    {
+      "kind": "region",
+      "label": "MoE：选择部分专家",
+      "wraps": [
+        "moe-in",
+        "router",
+        "expert-a",
+        "expert-b",
+        "combine"
+      ],
+      "pad": 24
+    }
+  ]
+}

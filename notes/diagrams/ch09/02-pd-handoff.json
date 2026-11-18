@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {"title": "P/D 分离：生成状态的传输与交接", "quality_profile": "showcase", "column_fit": "spread", "viewBox": [1100, 700]},
+  "participants": [
+    {"id": "coordinator", "type": "backend", "label": "请求协调器", "sublabel": "选择 P 与 D 实例"},
+    {"id": "prefill", "type": "backend", "label": "P 实例", "sublabel": "预填充与 KV 生成"},
+    {"id": "decode", "type": "backend", "label": "D 实例", "sublabel": "KV 接收与逐步生成"},
+    {"id": "response", "type": "frontend", "label": "返回通道", "sublabel": "网关与客户端"}
+  ],
+  "messages": [
+    {"id": "reserve", "from": "coordinator", "to": "decode", "y": 175, "label": "预留接收容量，校验执行配置"},
+    {"id": "prefill-job", "from": "coordinator", "to": "prefill", "y": 240, "label": "提交输入词元与目标 D", "variant": "emphasis"},
+    {"id": "move-state", "from": "prefill", "to": "decode", "y": 320, "label": "KV、位置与续接信息", "variant": "emphasis"},
+    {"id": "commit", "from": "decode", "to": "coordinator", "y": 400, "label": "校验完整，接管后续生成", "variant": "return"},
+    {"id": "release", "from": "coordinator", "to": "prefill", "y": 475, "label": "确认交接，释放请求占用"},
+    {"id": "stream", "from": "decode", "to": "response", "y": 555, "label": "首个输出及后续输出流", "variant": "return"}
+  ],
+  "cards": [
+    {"dot": "emerald", "title": "教学实现假设", "items": ["先预留 D 容量；完整交接后由 D 统一返回输出。实际实现可分块重叠传输。"]},
+    {"dot": "amber", "title": "交接的约束", "items": ["模型与适配器一致，KV 可解释，传输完成可确认，失败与取消可回收。"]}
+  ]
+}

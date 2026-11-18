@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "三层调度：部署形成供给，请求进入实例，引擎组织执行",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1120,
+      620
+    ]
+  },
+  "components": [
+    {
+      "id": "placement",
+      "type": "cloud",
+      "label": "实例部署调度",
+      "sublabel": "兼容设备、显存与拓扑",
+      "pos": [
+        60,
+        80
+      ],
+      "size": [
+        240,
+        90
+      ]
+    },
+    {
+      "id": "endpoints",
+      "type": "database",
+      "label": "就绪实例目录",
+      "sublabel": "可路由端点与能力标签",
+      "pos": [
+        430,
+        80
+      ],
+      "size": [
+        240,
+        90
+      ]
+    },
+    {
+      "id": "incoming",
+      "type": "external",
+      "label": "业务请求",
+      "sublabel": "模型、长度与服务等级",
+      "pos": [
+        60,
+        390
+      ],
+      "size": [
+        240,
+        90
+      ]
+    },
+    {
+      "id": "routing",
+      "type": "backend",
+      "label": "请求路由",
+      "sublabel": "筛选候选并比较负载与缓存",
+      "pos": [
+        430,
+        390
+      ],
+      "size": [
+        240,
+        90
+      ]
+    },
+    {
+      "id": "batching",
+      "type": "backend",
+      "label": "目标实例的引擎内调度",
+      "sublabel": "编排预填充片段与解码序列",
+      "pos": [
+        800,
+        390
+      ],
+      "size": [
+        260,
+        90
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "register",
+      "from": "placement",
+      "to": "endpoints",
+      "label": "就绪后注册",
+      "variant": "dashed"
+    },
+    {
+      "id": "discover",
+      "from": "endpoints",
+      "to": "routing",
+      "label": "提供候选端点",
+      "variant": "dashed",
+      "labelDy": 90
+    },
+    {
+      "id": "arrival",
+      "from": "incoming",
+      "to": "routing",
+      "label": "提交请求",
+      "variant": "emphasis"
+    },
+    {
+      "id": "assign",
+      "from": "routing",
+      "to": "batching",
+      "label": "派发到实例",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "供给路径",
+      "items": [
+        "部署、加载及预热完成后，实例才进入可用供给。虚线表示注册与目录信息。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "请求路径",
+      "items": [
+        "实线表示请求进入实例；引擎随后决定每轮执行的词元。流式返回路径省略。"
+      ]
+    }
+  ]
+}

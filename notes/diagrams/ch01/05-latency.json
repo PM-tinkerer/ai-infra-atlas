@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "从执行阶段到用户等待",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    },
+    "viewBox": [
+      740,
+      338
+    ]
+  },
+  "components": [
+    {
+      "id": "arrival",
+      "type": "backend",
+      "label": "请求到达",
+      "sublabel": "观测起点",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "queue",
+      "type": "backend",
+      "label": "排队与准备",
+      "sublabel": "调度及输入处理",
+      "pos": [
+        260,
+        50
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "prefill",
+      "type": "backend",
+      "label": "Prefill",
+      "sublabel": "建立输入状态",
+      "pos": [
+        480,
+        50
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "first",
+      "type": "backend",
+      "label": "首 Token",
+      "sublabel": "首次返回输出",
+      "pos": [
+        480,
+        200
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "following",
+      "type": "backend",
+      "label": "后续 Token",
+      "sublabel": "持续 Decode",
+      "pos": [
+        260,
+        200
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "last",
+      "type": "backend",
+      "label": "末 Token",
+      "sublabel": "观测终点",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        140,
+        70
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "time-0",
+      "from": "arrival",
+      "to": "queue",
+      "variant": "emphasis"
+    },
+    {
+      "id": "time-1",
+      "from": "queue",
+      "to": "prefill",
+      "variant": "emphasis"
+    },
+    {
+      "id": "time-2",
+      "from": "prefill",
+      "to": "first",
+      "variant": "emphasis"
+    },
+    {
+      "id": "time-3",
+      "from": "first",
+      "to": "following",
+      "variant": "emphasis"
+    },
+    {
+      "id": "time-4",
+      "from": "following",
+      "to": "last",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "TTFT：首 Token 延迟",
+      "items": [
+        "从请求计时起点到首 Token；需统一观测边界。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "ITL：Token 间延迟",
+      "items": [
+        "后续各 Token 的到达间隔，总和构成剩余生成时间。"
+      ]
+    }
+  ]
+}

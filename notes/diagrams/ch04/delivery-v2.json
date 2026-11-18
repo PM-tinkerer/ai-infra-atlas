@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "notes/diagrams/ch04/01-flash-io-v2.json",
+  "output": "notes/diagrams/ch04/01-flash-io-v2.html",
+  "specification": {
+    "sha256": "29b6be6b01fc181c70c47edae01a8f9611e6b166e2e3d3ba2c2ada2a1887776a",
+    "bytes": 2099
+  },
+  "artifact": {
+    "sha256": "0b4e60825ddb81cadc370294cd63cfcb00740be505d24682081ed704d1341b51",
+    "bytes": 627399
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

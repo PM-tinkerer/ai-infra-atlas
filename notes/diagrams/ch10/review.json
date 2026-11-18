@@ -1,0 +1,15 @@
+{
+  "diagram_type": "architecture",
+  "output": "notes/diagrams/ch10/01-scheduling-layers.html",
+  "specification_sha256": "86cc245518eb38a556d8dc1cdb27a6957a915bcc274e8da7a9057634c2e6f3c8",
+  "artifact_sha256": "57ed0a3cb4bd010ac4708294b4df4c0dd481b02cbdcb5607ef0be2c7aa1afc3e",
+  "validation": "9/9 showcase, 0 errors, 0 warnings",
+  "visual_review": "passed",
+  "reviewed": [
+    "1440x900 light/dark, 2048x1320 light/dark screenshots",
+    "Four desktop sizes without overflow",
+    "Supply information vs request flow, engine scheduling location",
+    "Offline styled SVG preview and modal viewer"
+  ],
+  "containment_receipt": "01-scheduling-layers.visual-check.json"
+}

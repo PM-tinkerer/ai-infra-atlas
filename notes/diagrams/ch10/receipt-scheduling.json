@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "notes/diagrams/ch10/01-scheduling-layers.json",
+  "output": "notes/diagrams/ch10/01-scheduling-layers.html",
+  "specification": {
+    "sha256": "86cc245518eb38a556d8dc1cdb27a6957a915bcc274e8da7a9057634c2e6f3c8",
+    "bytes": 2579
+  },
+  "artifact": {
+    "sha256": "57ed0a3cb4bd010ac4708294b4df4c0dd481b02cbdcb5607ef0be2c7aa1afc3e",
+    "bytes": 630151
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

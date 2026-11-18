@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Prefill、Decode 与缓存复用",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "prefill",
+      "type": "backend",
+      "label": "Prefill",
+      "sublabel": "处理 x1…xS",
+      "pos": [
+        40,
+        90
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "first",
+      "type": "backend",
+      "label": "首个输出 y1",
+      "sublabel": "由 Prefill 结果选出",
+      "pos": [
+        240,
+        90
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "decode",
+      "type": "backend",
+      "label": "Decode",
+      "sublabel": "处理当前输入 y_t",
+      "pos": [
+        500,
+        90
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "next-token",
+      "type": "backend",
+      "label": "选出 y_(t+1)",
+      "sublabel": "下一步的新输入",
+      "pos": [
+        740,
+        90
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "kv",
+      "type": "database",
+      "label": "KV Cache",
+      "sublabel": "逐层历史 K 与 V",
+      "pos": [
+        240,
+        310
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "write",
+      "type": "backend",
+      "label": "追加当前 K/V",
+      "sublabel": "来自当前处理位置",
+      "pos": [
+        500,
+        310
+      ],
+      "size": [
+        140,
+        70
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "p-first",
+      "from": "prefill",
+      "to": "first",
+      "variant": "emphasis"
+    },
+    {
+      "id": "first-d",
+      "from": "first",
+      "to": "decode",
+      "label": "输入 y1",
+      "variant": "emphasis"
+    },
+    {
+      "id": "d-next",
+      "from": "decode",
+      "to": "next-token",
+      "variant": "emphasis"
+    },
+    {
+      "id": "next-d",
+      "from": "next-token",
+      "to": "decode",
+      "label": "未结束则继续",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "top",
+      "via": [
+        [
+          810,
+          40
+        ],
+        [
+          570,
+          40
+        ]
+      ]
+    },
+    {
+      "id": "p-kv",
+      "from": "prefill",
+      "to": "kv",
+      "label": "建立缓存",
+      "variant": "default"
+    },
+    {
+      "id": "kv-d",
+      "from": "kv",
+      "to": "decode",
+      "label": "读取历史 KV",
+      "variant": "default"
+    },
+    {
+      "id": "d-write",
+      "from": "decode",
+      "to": "write",
+      "label": "当前位置 K/V",
+      "variant": "default",
+      "labelAt": [
+        570,
+        240
+      ]
+    },
+    {
+      "id": "write-kv",
+      "from": "write",
+      "to": "kv",
+      "label": "追加缓存",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [
+        [
+          570,
+          420
+        ],
+        [
+          310,
+          420
+        ]
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "复用不等于零成本",
+      "items": [
+        "避免重算历史 K/V，但仍需读取缓存并计算当前注意力。"
+      ]
+    }
+  ]
+}

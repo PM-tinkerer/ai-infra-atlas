@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "矩阵分块：加载一次，重复使用",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    },
+    "viewBox": [
+      760,
+      342
+    ]
+  },
+  "components": [
+    {
+      "id": "input",
+      "type": "database",
+      "label": "HBM 中的 A、B",
+      "sublabel": "大型输入矩阵",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "load",
+      "type": "backend",
+      "label": "协作加载 tile",
+      "sublabel": "相邻线程配合访存",
+      "pos": [
+        280,
+        50
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "shared",
+      "type": "database",
+      "label": "片上共享 tile",
+      "sublabel": "Shared Memory 复用",
+      "pos": [
+        520,
+        50
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "fragment",
+      "type": "database",
+      "label": "寄存器片段",
+      "sublabel": "准备操作数与累加器",
+      "pos": [
+        40,
+        210
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "mma",
+      "type": "backend",
+      "label": "矩阵乘加 MMA",
+      "sublabel": "更新 C 的部分和",
+      "pos": [
+        280,
+        210
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "output",
+      "type": "database",
+      "label": "写回 C tile",
+      "sublabel": "完成 K 方向的累加后",
+      "pos": [
+        520,
+        210
+      ],
+      "size": [
+        160,
+        64
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "input-load",
+      "from": "input",
+      "to": "load",
+      "variant": "emphasis"
+    },
+    {
+      "id": "load-shared",
+      "from": "load",
+      "to": "shared",
+      "variant": "emphasis"
+    },
+    {
+      "id": "shared-fragment",
+      "from": "shared",
+      "to": "fragment",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "fragment-mma",
+      "from": "fragment",
+      "to": "mma",
+      "variant": "emphasis"
+    },
+    {
+      "id": "mma-output",
+      "from": "mma",
+      "to": "output",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "图示一次分块数据流",
+      "items": [
+        "实际内核沿 K 方向重复加载和累加；布局、同步与指令接口随架构而变。"
+      ]
+    }
+  ]
+}

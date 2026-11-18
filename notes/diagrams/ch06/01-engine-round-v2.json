@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "引擎内一轮生成的组件协作",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1100,
+      600
+    ],
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "queue",
+      "type": "messagebus",
+      "label": "请求队列",
+      "sublabel": "新请求与等待工作",
+      "pos": [
+        30,
+        170
+      ],
+      "size": [
+        190,
+        78
+      ]
+    },
+    {
+      "id": "scheduler",
+      "type": "backend",
+      "label": "调度器",
+      "sublabel": "选请求、词元与预算",
+      "pos": [
+        310,
+        170
+      ],
+      "size": [
+        190,
+        78
+      ]
+    },
+    {
+      "id": "executor",
+      "type": "backend",
+      "label": "执行器",
+      "sublabel": "模型前向与采样",
+      "pos": [
+        590,
+        170
+      ],
+      "size": [
+        190,
+        78
+      ]
+    },
+    {
+      "id": "output",
+      "type": "frontend",
+      "label": "输出处理",
+      "sublabel": "流式返回与终态",
+      "pos": [
+        870,
+        170
+      ],
+      "size": [
+        190,
+        78
+      ]
+    },
+    {
+      "id": "cache",
+      "type": "database",
+      "label": "缓存管理与 KV",
+      "sublabel": "分配、引用与安全回收",
+      "pos": [
+        450,
+        450
+      ],
+      "size": [
+        230,
+        78
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "queue",
+      "to": "scheduler"
+    },
+    {
+      "from": "scheduler",
+      "to": "executor"
+    },
+    {
+      "from": "executor",
+      "to": "output"
+    },
+    {
+      "from": "scheduler",
+      "to": "cache",
+      "label": "申请与释放",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "from": "executor",
+      "to": "cache",
+      "label": "读取与追加",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ]
+}

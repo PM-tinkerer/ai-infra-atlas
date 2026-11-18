@@ -1,0 +1,225 @@
+{
+  "ch07": {
+    "title": "第 7 章｜多 GPU 与多节点推理：模型如何协同执行",
+    "asset": "assets/ch07-panorama-v7.png",
+    "source_note": "图中原理与带宽示例依据（2026-11-16 核验；厂商标称值，非实测；NVLink 按 GPU 双向聚合，网络按端口单向）：",
+    "sources": [
+      {
+        "label": "vLLM：并行与扩展",
+        "url": "https://docs.vllm.ai/en/latest/serving/parallelism_scaling/"
+      },
+      {
+        "label": "Megatron Core：上下文并行原理",
+        "url": "https://docs.nvidia.com/megatron-core/developer-guide/latest/user-guide/features/context_parallel.html"
+      },
+      {
+        "label": "NVIDIA Hopper Tuning Guide 13.5：NVLink 带宽口径",
+        "url": "https://docs.nvidia.com/cuda/hopper-tuning-guide/"
+      },
+      {
+        "label": "NVIDIA ConnectX-7：IB / Ethernet 400G 端口",
+        "url": "https://networking-docs.nvidia.com/connectx7hw/introduction"
+      },
+      {
+        "label": "NVIDIA：RoCE 支持",
+        "url": "https://docs.nvidia.com/networking/display/kubernetes2670/platform-support.html"
+      }
+    ],
+    "verified_on": "2026-11-16",
+    "scope": "H100 SXM NVLink 900 GB/s 双向聚合理论带宽；ConnectX-7 单端口 400 Gb/s = 50 GB/s 标称速率示例；不代表所有代际或实际吞吐"
+  },
+  "ch08": {
+    "title": "第 8 章｜国产 GPU 与 AI 加速器全景：理解差异与适配边界",
+    "asset": "assets/ch08-panorama-v2.png",
+    "source_note": "厂商技术路线与软件栈依据；具体型号的功能和性能需单独验证：",
+    "sources": [
+      {
+        "label": "昇腾 CANN",
+        "url": "https://www.hiascend.com/doc_center/source/zh/canncommercial/850/index/index.html"
+      },
+      {
+        "label": "寒武纪 MLU",
+        "url": "https://www.cambricon.com/"
+      },
+      {
+        "label": "海光 DCU／DTK",
+        "url": "https://static.cninfo.com.cn/finalpage/2026-08-14/1225472510.PDF"
+      },
+      {
+        "label": "壁仞",
+        "url": "https://www.birentech.com/"
+      },
+      {
+        "label": "摩尔线程",
+        "url": "https://metapark.mthreads.com/p"
+      },
+      {
+        "label": "天数智芯",
+        "url": "https://www.iluvatar.com/software?fullCode=cpjs-rj-rjz"
+      },
+      {
+        "label": "燧原",
+        "url": "https://static.cninfo.com.cn/finalpage/2026-09-08/1225552227.PDF"
+      }
+    ],
+    "verified_on": "2026-11-16",
+    "scope": "概念与机制，不引用硬件性能数值或宣称跨产品支持范围"
+  },
+  "ch09": {
+    "title": "第 9 章｜分布式 Serving 与异构纳管：把不同算力组织成平台",
+    "asset": "assets/ch09-panorama-v4.png",
+    "source_note": "图中相关原理与机制依据：",
+    "sources": [
+      {
+        "label": "Kubernetes：Device Plugins",
+        "url": "https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/"
+      },
+      {
+        "label": "Kubernetes：DRA",
+        "url": "https://v1-35.docs.kubernetes.io/docs/concepts/scheduling-eviction/dynamic-resource-allocation/"
+      },
+      {
+        "label": "vLLM：P/D 分离",
+        "url": "https://docs.vllm.ai/en/v0.23.0/features/disagg_prefill/"
+      }
+    ],
+    "verified_on": "2026-11-16",
+    "scope": "概念与机制，不引用硬件性能数值或宣称跨产品支持范围"
+  },
+  "ch10": {
+    "title": "第 10 章｜多层调度与容量规划：把请求放到合适的算力上",
+    "asset": "assets/ch10-panorama-v2.png",
+    "source_note": "图中相关原理与机制依据：",
+    "sources": [
+      {
+        "label": "Kubernetes：实例部署调度",
+        "url": "https://kubernetes.io/docs/concepts/scheduling-eviction/"
+      },
+      {
+        "label": "Little：L = λW 的原始证明",
+        "url": "https://bpb-us-e1.wpmucdn.com/sites.mit.edu/dist/9/2055/files/2020/05/ContentServer.pdf"
+      }
+    ],
+    "verified_on": "2026-11-16",
+    "scope": "概念与机制，不引用硬件性能数值或宣称跨产品支持范围"
+  },
+  "ch11": {
+    "title": "第 11 章｜稳定性与多租户保障：让系统在压力和故障下可控",
+    "asset": "assets/ch11-panorama-v5.png",
+    "source_note": "图中相关原理与机制依据：",
+    "sources": [
+      {
+        "label": "Google SRE：过载控制",
+        "url": "https://sre.google/sre-book/handling-overload/"
+      },
+      {
+        "label": "Google SRE：服务目标",
+        "url": "https://sre.google/resources/book-update/slos/"
+      }
+    ],
+    "verified_on": "2026-11-16",
+    "scope": "概念与机制，不引用硬件性能数值或宣称跨产品支持范围"
+  },
+  "ch12": {
+    "title": "第 12 章｜评测、成本与产品决策：设计可经营的推理产品",
+    "asset": "assets/ch12-panorama-v2.png",
+    "source_note": "图中相关原理与机制依据：",
+    "sources": [
+      {
+        "label": "MLCommons：质量、时延和吞吐口径",
+        "url": "https://mlcommons.org/benchmarks/inference-datacenter/"
+      },
+      {
+        "label": "MLPerf：评测规则",
+        "url": "https://github.com/mlcommons/inference_policies/blob/master/inference_rules.adoc"
+      }
+    ],
+    "verified_on": "2026-11-16",
+    "scope": "概念与机制，不引用硬件性能数值或宣称跨产品支持范围"
+  },
+  "ch04": {
+    "title": "第 4 章｜计算与精度优化：降低执行开销",
+    "sources": [
+      {
+        "label": "FlashAttention 原始论文 v2",
+        "url": "https://arxiv.org/abs/2205.14135v2"
+      },
+      {
+        "label": "NVIDIA：CUDA Graphs 原理",
+        "url": "https://developer.nvidia.com/blog/cuda-graphs/"
+      },
+      {
+        "label": "SmoothQuant 论文 v7",
+        "url": "https://arxiv.org/abs/2211.10438v7"
+      }
+    ],
+    "asset": "assets/ch04-panorama-v2.png",
+    "verified_on": "2026-11-17",
+    "source_note": "图中原理与机制依据（2026-11-17 核验；图示为机制示意，不引用性能实测）：",
+    "scope": "课程机制概览；CUDA Graphs 特指 NVIDIA CUDA；实现支持范围以所引固定版本文档为准。"
+  },
+  "ch05": {
+    "title": "第 5 章｜KV Cache 与长上下文：管理推理状态",
+    "sources": [
+      {
+        "label": "PagedAttention 原始论文",
+        "url": "https://arxiv.org/abs/2309.06180"
+      },
+      {
+        "label": "vLLM v0.11.0：前缀缓存与隔离",
+        "url": "https://docs.vllm.ai/en/v0.11.0/design/prefix_caching.html"
+      }
+    ],
+    "asset": "assets/ch05-panorama-v3.png",
+    "verified_on": "2026-11-17",
+    "source_note": "图中原理与机制依据（2026-11-17 核验；图示为机制示意，不引用性能实测）：",
+    "scope": "课程机制概览；CUDA Graphs 特指 NVIDIA CUDA；实现支持范围以所引固定版本文档为准。"
+  },
+  "ch06": {
+    "title": "第 6 章｜推理引擎与生成调度：把单次执行组织成高效服务",
+    "sources": [
+      {
+        "label": "vLLM v0.11.0：分块预填充与抢占",
+        "url": "https://docs.vllm.ai/en/v0.11.0/configuration/optimization.html"
+      },
+      {
+        "label": "投机解码原始论文 v2",
+        "url": "https://arxiv.org/abs/2211.17192v2"
+      },
+      {
+        "label": "Orca：逐轮调度原理（OSDI 2022）",
+        "url": "https://www.usenix.org/conference/osdi22/presentation/yu"
+      }
+    ],
+    "asset": "assets/ch06-panorama-v3.png",
+    "verified_on": "2026-11-17",
+    "source_note": "图中原理与机制依据（2026-11-17 核验；图示为机制示意，不引用性能实测）：",
+    "scope": "课程机制概览；CUDA Graphs 特指 NVIDIA CUDA；实现支持范围以所引固定版本文档为准。"
+  },
+  "ch03": {
+    "title": "第 3 章｜性能模型与度量：定位推理为什么慢、为什么贵",
+    "asset": "assets/ch03-panorama-v4.png",
+    "source_note": "图中度量口径与性能模型依据（2026-11-17 核验；通用原理，无硬件性能实测）：",
+    "sources": [
+      {
+        "label": "vLLM：TTFT、ITL 与 TPOT 度量口径",
+        "url": "https://docs.vllm.ai/en/latest/design/metrics/"
+      },
+      {
+        "label": "NERSC：Roofline 性能上限模型",
+        "url": "https://docs.nersc.gov/tools/performance/roofline/"
+      }
+    ],
+    "verified_on": "2026-11-17",
+    "scope": "A4 全景图；等长序列、各层同结构且无共享的KV容量估算；Dense线性层近似；不含数值算例"
+  },
+  "ch01": {
+    "title": "第 1 章｜大模型推理原理：从输入到逐 Token 生成",
+    "asset": "assets/ch01-panorama-v5.png"
+  },
+  "ch02": {
+    "title": "第 2 章｜GPU 架构：大模型计算如何映射到硬件",
+    "asset": "assets/ch02-panorama-v8.png",
+    "intermediate_asset": "assets/ch02-panorama-v6.png"
+  }
+}

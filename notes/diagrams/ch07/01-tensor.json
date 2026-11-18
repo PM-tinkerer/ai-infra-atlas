@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "张量并行：局部计算后合成完整结果",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    },
+    "viewBox": [
+      1040,
+      600
+    ]
+  },
+  "components": [
+    {
+      "id": "input",
+      "type": "backend",
+      "label": "共同输入 X",
+      "sublabel": "同一批词元的隐藏表示",
+      "pos": [
+        35,
+        260
+      ],
+      "size": [
+        190,
+        76
+      ]
+    },
+    {
+      "id": "local-a",
+      "type": "backend",
+      "label": "GPU A：局部 FFN",
+      "sublabel": "列分片 W₁ₐ → 激活 → 行分片 W₂ₐ",
+      "pos": [
+        355,
+        100
+      ],
+      "size": [
+        290,
+        76
+      ]
+    },
+    {
+      "id": "local-b",
+      "type": "backend",
+      "label": "GPU B：局部 FFN",
+      "sublabel": "列分片 W₁ᵦ → 激活 → 行分片 W₂ᵦ",
+      "pos": [
+        355,
+        420
+      ],
+      "size": [
+        290,
+        76
+      ]
+    },
+    {
+      "id": "sum",
+      "type": "backend",
+      "label": "All-reduce 求和",
+      "sublabel": "Y = Zₐ + Zᵦ；各卡得到 Y",
+      "pos": [
+        795,
+        260
+      ],
+      "size": [
+        220,
+        76
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "input-local-a",
+      "from": "input",
+      "to": "local-a",
+      "variant": "emphasis",
+      "label": "复制 X"
+    },
+    {
+      "id": "input-local-b",
+      "from": "input",
+      "to": "local-b",
+      "variant": "emphasis",
+      "label": "复制 X"
+    },
+    {
+      "id": "local-a-sum",
+      "from": "local-a",
+      "to": "sum",
+      "variant": "emphasis",
+      "label": "局部结果 Zₐ"
+    },
+    {
+      "id": "local-b-sum",
+      "from": "local-b",
+      "to": "sum",
+      "variant": "emphasis",
+      "label": "局部结果 Zᵦ"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "同一层内协作",
+      "items": [
+        "两张卡分别保存中间维度的一部分权重，局部激活留在所属卡。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "逻辑通信操作",
+      "items": [
+        "All-reduce 由通信组共同完成；图中方框表示操作，不表示一台中心服务器。"
+      ]
+    }
+  ]
+}

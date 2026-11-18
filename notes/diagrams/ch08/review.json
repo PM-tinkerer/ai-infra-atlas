@@ -1,0 +1,16 @@
+{
+  "diagram_type": "workflow",
+  "output": "notes/diagrams/ch08/01-adaptation-flow.html",
+  "specification_sha256": "18dd6838ecd051a2425e04561638c81068106f4d6c0e2e4c56754f4bcf07bdff",
+  "artifact_sha256": "4b2ac90479760c55925c2b122c14099fc4a00013660cb25486586c914166bb85",
+  "validation": "9/9 showcase, 0 errors, 0 warnings",
+  "visual_review": "passed",
+  "correction_rounds": 1,
+  "inspected": [
+    "2048x1320 light",
+    "1440x900 dark",
+    "embedded SVG in chapter"
+  ],
+  "semantics": "箭头表示验证阶段推进；失败回归由相邻正文与卡片说明；生产验证通过后发布适配矩阵。",
+  "receipt": "01-adaptation-flow.delivery.json"
+}

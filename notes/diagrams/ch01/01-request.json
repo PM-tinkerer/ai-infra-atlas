@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "从文本到下一个 Token",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    },
+    "viewBox": [
+      760,
+      340
+    ]
+  },
+  "components": [
+    {
+      "id": "context",
+      "type": "backend",
+      "label": "组装上下文",
+      "sublabel": "指令、历史与文档",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "tokenize",
+      "type": "backend",
+      "label": "Tokenization",
+      "sublabel": "文本编码为 ID",
+      "pos": [
+        260,
+        50
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "embed",
+      "type": "backend",
+      "label": "Embedding",
+      "sublabel": "ID 映射为向量",
+      "pos": [
+        480,
+        50
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "layers",
+      "type": "backend",
+      "label": "Transformer",
+      "sublabel": "逐层加工表示",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "logits",
+      "type": "backend",
+      "label": "Logits",
+      "sublabel": "词表候选分数",
+      "pos": [
+        260,
+        200
+      ],
+      "size": [
+        140,
+        70
+      ]
+    },
+    {
+      "id": "select",
+      "type": "backend",
+      "label": "选择 Token",
+      "sublabel": "贪心选择或采样",
+      "pos": [
+        480,
+        200
+      ],
+      "size": [
+        140,
+        70
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "flow-0",
+      "from": "context",
+      "to": "tokenize",
+      "variant": "emphasis"
+    },
+    {
+      "id": "flow-1",
+      "from": "tokenize",
+      "to": "embed",
+      "variant": "emphasis"
+    },
+    {
+      "id": "flow-2",
+      "from": "embed",
+      "to": "layers",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "flow-3",
+      "from": "layers",
+      "to": "logits",
+      "variant": "emphasis"
+    },
+    {
+      "id": "flow-4",
+      "from": "logits",
+      "to": "select",
+      "variant": "emphasis"
+    },
+    {
+      "id": "feedback",
+      "from": "select",
+      "to": "embed",
+      "variant": "dashed",
+      "label": "下一轮输入",
+      "fromSide": "right",
+      "toSide": "right",
+      "via": [
+        [
+          690,
+          235
+        ],
+        [
+          690,
+          85
+        ]
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "顺序依赖",
+      "items": [
+        "后续输出取决于此前已选出的 Token；单轮计算仍可并行。"
+      ]
+    }
+  ]
+}

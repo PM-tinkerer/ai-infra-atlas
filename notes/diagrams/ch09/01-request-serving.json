@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {"title": "一次请求的数据面：进入、生成与流式返回", "quality_profile": "showcase", "column_fit": "spread", "viewBox": [1100, 700]},
+  "participants": [
+    {"id": "caller", "type": "external", "label": "客户端", "sublabel": "对话／文档／Agent"},
+    {"id": "gateway", "type": "security", "label": "服务网关", "sublabel": "鉴权与配额"},
+    {"id": "router", "type": "backend", "label": "模型服务与路由", "sublabel": "版本解析与实例选择"},
+    {"id": "engine", "type": "backend", "label": "推理实例", "sublabel": "引擎／模型／KV 状态"}
+  ],
+  "messages": [
+    {"id": "submit", "from": "caller", "to": "gateway", "y": 185, "label": "模型、输入与租户凭证"},
+    {"id": "authorize", "from": "gateway", "to": "router", "y": 250, "label": "鉴权及准入通过", "variant": "security"},
+    {"id": "dispatch", "from": "router", "to": "engine", "y": 315, "label": "派发到兼容且就绪的实例", "variant": "emphasis"},
+    {"id": "generate", "from": "engine", "to": "router", "y": 390, "label": "首个结果及后续输出块", "variant": "return"},
+    {"id": "relay", "from": "router", "to": "gateway", "y": 465, "label": "持续转发输出流", "variant": "return"},
+    {"id": "receive", "from": "gateway", "to": "caller", "y": 540, "label": "逐块呈现，最终结束", "variant": "return"}
+  ],
+  "cards": [
+    {"dot": "emerald", "title": "实例内部", "items": ["预填充建立 KV，解码逐词元生成；引擎自行组织每轮计算。"]},
+    {"dot": "cyan", "title": "图的阅读方式", "items": ["纵向表示逻辑先后；返回箭头代表持续的流，不是等全部生成后才返回。"]}
+  ]
+}

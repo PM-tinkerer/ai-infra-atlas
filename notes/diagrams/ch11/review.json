@@ -1,0 +1,15 @@
+{
+  "diagram_type": "sequence",
+  "output": "notes/diagrams/ch11/01-cancel-reclaim-v2.html",
+  "specification_sha256": "f26f5af0ec65ebc0aff012d3fb7d3d06141f091ec5bf54560c07c15c6afcfdba",
+  "artifact_sha256": "e6990976dd24d9cc90090226bef6d64e5a4cdc3cc6cc95c94c2c0f15d32f5981",
+  "validation": "9/9 showcase, 0 errors, 0 warnings",
+  "visual_review": "passed",
+  "reviewed": [
+    "1440x900 light/dark and 2048x1320 light/dark screenshots",
+    "Four desktop viewports without overflow",
+    "Cancellation propagation, safe stopping and request-owned state reclamation",
+    "Offline styled SVG and modal viewer"
+  ],
+  "containment_receipt": "01-cancel-reclaim-v2.visual-check.json"
+}

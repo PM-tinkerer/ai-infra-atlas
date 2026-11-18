@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "模型迁移：逐层验证交付条件",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "lanes": [
+    {
+      "id": "prepare",
+      "label": "基线与实现"
+    },
+    {
+      "id": "verify",
+      "label": "验证与交付"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "baseline",
+      "lane": "prepare",
+      "col": 0,
+      "type": "database",
+      "label": "固定基线",
+      "sublabel": "盘点模型与依赖"
+    },
+    {
+      "id": "port",
+      "lane": "prepare",
+      "col": 1,
+      "type": "backend",
+      "label": "迁移实现",
+      "sublabel": "替换、编译与调试"
+    },
+    {
+      "id": "quality",
+      "lane": "verify",
+      "col": 1,
+      "type": "security",
+      "label": "质量验证",
+      "sublabel": "数值与任务结果"
+    },
+    {
+      "id": "performance",
+      "lane": "verify",
+      "col": 3,
+      "type": "security",
+      "label": "性能验证",
+      "sublabel": "目标负载与时延"
+    },
+    {
+      "id": "production",
+      "lane": "verify",
+      "col": 5,
+      "type": "security",
+      "label": "生产验证",
+      "sublabel": "恢复、回滚与矩阵"
+    }
+  ],
+  "edges": [
+    {
+      "from": "baseline",
+      "to": "port"
+    },
+    {
+      "from": "port",
+      "to": "quality",
+      "label": "功能可用"
+    },
+    {
+      "from": "quality",
+      "to": "performance",
+      "label": "质量通过"
+    },
+    {
+      "from": "performance",
+      "to": "production",
+      "label": "性能达标"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "验证闭环",
+      "items": [
+        "失败时修复对应实现或配置，再做回归；生产验证通过后发布适配矩阵。"
+      ]
+    }
+  ],
+  "mainPath": [
+    "baseline",
+    "port",
+    "quality",
+    "performance",
+    "production"
+  ]
+}

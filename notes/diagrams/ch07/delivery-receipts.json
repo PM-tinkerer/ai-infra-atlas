@@ -1,0 +1,98 @@
+[
+  {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "deliver",
+    "type": "architecture",
+    "input": "notes/diagrams/ch07/01-tensor.json",
+    "output": "notes/diagrams/ch07/01-tensor.html",
+    "specification": {
+      "sha256": "ce51cf0949e90b81690830af191afdbea7df239eae053f014ee95cdd507f6c12",
+      "bytes": 2332
+    },
+    "artifact": {
+      "sha256": "ed295e9dd1d789c5ae90ff5a45acb197017d747c8c30cfeca538db851f9231f1",
+      "bytes": 627361
+    },
+    "validation": {
+      "checksPassed": 9,
+      "checkCount": 9,
+      "compositionProfile": "showcase",
+      "compositionStatus": "pass",
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "deliver",
+    "type": "architecture",
+    "input": "notes/diagrams/ch07/02-replicas-pipeline.json",
+    "output": "notes/diagrams/ch07/02-replicas-pipeline.html",
+    "specification": {
+      "sha256": "7366c679413a9bad047c8f7e0668d9d863705c6ca23690b9e3e03f45116c9d67",
+      "bytes": 2870
+    },
+    "artifact": {
+      "sha256": "71456a68a722ac580d95d65e31fa07b391c919242ee2d33c228af965c1d2c3be",
+      "bytes": 628900
+    },
+    "validation": {
+      "checksPassed": 9,
+      "checkCount": 9,
+      "compositionProfile": "showcase",
+      "compositionStatus": "pass",
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "deliver",
+    "type": "architecture",
+    "input": "notes/diagrams/ch07/03-experts.json",
+    "output": "notes/diagrams/ch07/03-experts.html",
+    "specification": {
+      "sha256": "53fa7fd355e6bbf65f52ed93c9a6f7f6aab7eadd14f481cbf9eba4d019942a40",
+      "bytes": 2702
+    },
+    "artifact": {
+      "sha256": "89a3d760c109a8d9875c20d08895819d66db3e38df3b3217270c510d95ef4670",
+      "bytes": 628728
+    },
+    "validation": {
+      "checksPassed": 9,
+      "checkCount": 9,
+      "compositionProfile": "showcase",
+      "compositionStatus": "pass",
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "deliver",
+    "type": "architecture",
+    "input": "notes/diagrams/ch07/04-topology.json",
+    "output": "notes/diagrams/ch07/04-topology.html",
+    "specification": {
+      "sha256": "d5a43a19e872a892742c8611b529af52beb03c4ce46a49a45b227f981f575d10",
+      "bytes": 3561
+    },
+    "artifact": {
+      "sha256": "debfe226c5156d9f847ee9fa70b929cf4f9ee3b299f3c7fe1aa47c10ed3c2fa3",
+      "bytes": 631745
+    },
+    "validation": {
+      "checksPassed": 9,
+      "checkCount": 9,
+      "compositionProfile": "showcase",
+      "compositionStatus": "pass",
+      "errors": 0,
+      "warnings": 0
+    }
+  }
+]

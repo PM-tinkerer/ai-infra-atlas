@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "把评测证据转化为产品决策",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1120,
+      620
+    ]
+  },
+  "components": [
+    {
+      "id": "service-contract",
+      "type": "frontend",
+      "label": "固定服务契约",
+      "sublabel": "任务、质量、负载与目标",
+      "pos": [
+        60,
+        80
+      ],
+      "size": [
+        240,
+        90
+      ]
+    },
+    {
+      "id": "workload-replay",
+      "type": "backend",
+      "label": "重放并重复测量",
+      "sublabel": "到达轨迹、长度与冷暖缓存",
+      "pos": [
+        430,
+        80
+      ],
+      "size": [
+        240,
+        90
+      ]
+    },
+    {
+      "id": "acceptance",
+      "type": "security",
+      "label": "质量与服务验收",
+      "sublabel": "完整成功、延迟与有效吞吐",
+      "pos": [
+        800,
+        80
+      ],
+      "size": [
+        260,
+        90
+      ]
+    },
+    {
+      "id": "cost-boundary",
+      "type": "database",
+      "label": "核算成本与风险",
+      "sublabel": "同期完整成本与有效产出",
+      "pos": [
+        800,
+        390
+      ],
+      "size": [
+        260,
+        90
+      ]
+    },
+    {
+      "id": "product-rollout",
+      "type": "cloud",
+      "label": "形成产品规格并灰度",
+      "sublabel": "定价、容量承诺与上线复测",
+      "pos": [
+        430,
+        390
+      ],
+      "size": [
+        240,
+        90
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "set-inputs",
+      "from": "service-contract",
+      "to": "workload-replay",
+      "label": "统一条件"
+    },
+    {
+      "id": "produce-evidence",
+      "from": "workload-replay",
+      "to": "acceptance",
+      "label": "提交证据"
+    },
+    {
+      "id": "pass-gate",
+      "from": "acceptance",
+      "to": "cost-boundary",
+      "label": "达标",
+      "variant": "emphasis",
+      "labelDy": 90
+    },
+    {
+      "id": "adopt-option",
+      "from": "cost-boundary",
+      "to": "product-rollout",
+      "label": "评审通过",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "退出条件",
+      "items": [
+        "质量或服务未达标时修正执行方案；收益不足或风险超限时保留基线。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "更新证据",
+      "items": [
+        "灰度后复核实际质量、负载和成本，变化进入下一轮评测。"
+      ]
+    }
+  ]
+}
